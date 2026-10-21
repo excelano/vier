@@ -41,7 +41,7 @@ Vier runs on the watch alone and needs no iPhone app. There are no ads, no accou
 """
 
 [locales."en-us".apple]
-name = "Vier"
-subtitle = "Four in a row on your wrist"
+name = "Vier: Four in a Row"
+subtitle = "Drop discs and beat the watch"
 promotional-text = "The classic four-in-a-row game, made for the watch. Turn the Crown, swipe down to drop, and try to beat the watch. No ads, no accounts, and it never goes online."
 keywords = "four in a row,board game,strategy,puzzle,kids,family,classic,discs,offline,two player,watch game"

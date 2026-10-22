@@ -8,20 +8,19 @@
 # description 4,000, apple-review-notes 4,000.
 
 apple-review-notes = """
-Vier is four in a row for Apple Watch, played against the watch. It is watch-only; the iOS app in this package is an empty container that App Store Connect requires, and everything is reviewed on the watch. There is no sign-in, no account and no network connection.
+Vier is a four-in-a-row game that runs on Apple Watch only; the iPhone portion of the upload is the empty container a watch-only app is delivered in. No login is needed, and the game makes no network connection.
 
-HOW TO PLAY
-1. Open Vier on the Apple Watch and tap Play.
-2. Turn the Digital Crown, or slide a finger left or right on the board, to move the red disc above the columns.
-3. Swipe down on the board to drop the disc. The watch then answers with a yellow disc.
-4. Line up four red discs across, down or diagonally to win. The winning discs are ringed, and the game offers Play again and Home.
+PLAYING A GAME
+1. On the watch, launch Vier. Players starts as Against the watch; tap Play.
+2. Move the red disc over a column with the Digital Crown, or by sliding a finger sideways on the board.
+3. Swipe down on the board to drop it. The watch answers with a yellow disc.
+4. Four red discs in a line, across, down or diagonally, win. The four are ringed, and Play again and Home appear.
 
-Difficulty is chosen on the home screen. Easy is meant to be beatable by a child. A game in progress is kept if the app is closed and picks up where it left off when it is opened again.
+ALSO ON THE HOME SCREEN
+Players switches to Two players, for two people taking turns on one watch; the Difficulty setting is hidden in that mode. Difficulty (Easy, Medium, Hard) sets the watch's strength, and Easy is designed for a young child. Changing difficulty during a game asks before ending it. A game in progress is saved and resumes when Vier is opened again.
 
-PRIVACY
-Vier makes no network request and collects nothing. It keeps the chosen difficulty, the game in progress and who moves first next in its own preferences on the watch. The privacy policy is at https://excelano.com/legal/#vier and the complete source is public at https://github.com/excelano/vier.
-
-Contact for review questions: David M. Anderson, david.anderson@excelano.com.
+STORED DATA
+Vier keeps four preferences on the watch: the difficulty, the players setting, the saved game and who moves first next time. It sends nothing anywhere. Policy: https://excelano.com/legal/#vier. Code: https://github.com/excelano/vier.
 """
 
 [locales."en-us"]
@@ -29,19 +28,21 @@ website = "https://github.com/excelano/vier"
 support = "https://github.com/excelano/vier"
 privacy = "https://excelano.com/legal/#vier"
 description = """
-Vier is four in a row on your Apple Watch. Drop red discs into the board, and line up four across, down or diagonally before the watch does the same with yellow.
+Vier is the four-in-a-row board game, sized for Apple Watch. Red plays yellow on a seven-by-six board: drop discs in turn, and the first to line up four across, down or diagonally wins.
 
-Turn the Digital Crown or slide a finger to move your disc over a column, then swipe down to drop it. The watch thinks for a moment, slides its disc over and drops it in turn. When someone lines up four, those discs light up.
+Move your disc over a column with the Digital Crown or a sideways slide of a finger, then swipe down to drop it. Against the watch, it takes a moment to think, slides its yellow disc over and drops it in reply. The four discs that win the game are ringed and pulse.
 
-Pick Easy, Medium or Hard. Easy is made to be beaten by a kid, Medium takes some thought, and Hard looks ahead and blocks your wins. Who goes first switches every game.
+The watch plays at three levels. Easy was built for a young child to beat. Medium always blocks a win you are about to make. Hard reads four moves ahead. Who opens the game switches from one game to the next.
 
-Lower your wrist in the middle of a game and it waits for you. Open Vier again and the board is just as you left it.
+Two people can share one watch, too: choose Two players on the home screen and pass the watch back and forth across a table.
 
-Vier runs on the watch alone and needs no iPhone app. There are no ads, no accounts, no in-app purchases and no tracking, and it never goes online. It is open source under the MIT license.
+A game in progress survives a lowered wrist and a closed app, and Vier reopens on the same board.
+
+Vier was made for a child's watch set up through Family Setup. It runs without an iPhone, works with no connection at all, and holds no ads, sign-ups or purchases to tap into by accident. Anyone can read its code at github.com/excelano/vier.
 """
 
 [locales."en-us".apple]
 name = "Vier: Four in a Row"
 subtitle = "Drop discs and beat the watch"
-promotional-text = "The classic four-in-a-row game, made for the watch. Turn the Crown, swipe down to drop, and try to beat the watch. No ads, no accounts, and it never goes online."
+promotional-text = "Red against yellow on your wrist. Beat the watch at Easy, Medium or Hard, or pass it across the table for a game between two people."
 keywords = "four in a row,board game,strategy,puzzle,kids,family,classic,discs,offline,two player,watch game"

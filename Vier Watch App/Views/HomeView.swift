@@ -7,8 +7,8 @@ import SwiftUI
 struct HomeView: View {
     @Environment(GameViewModel.self) private var game
     @AppStorage(StorageKey.difficulty) private var difficulty: Difficulty = .easy
+    @AppStorage(StorageKey.mode) private var mode: GameViewModel.Mode = .versusWatch
     @State private var isPlaying = false
-    @State private var isHotSeat = false
     @State private var pendingDifficulty: Difficulty?
 
     var body: some View {
@@ -19,9 +19,11 @@ struct HomeView: View {
                     Button("Play", action: play)
                         .buttonStyle(.borderedProminent)
                         .tint(.discRed)
-                    if isHotSeat {
-                        Text("Two players").font(.footnote).foregroundStyle(.secondary)
-                    } else {
+                    Picker("Players", selection: $mode) {
+                        ForEach(GameViewModel.Mode.allCases) { Text($0.title).tag($0) }
+                    }
+                    .pickerStyle(.navigationLink)
+                    if mode == .versusWatch {
                         Picker("Difficulty", selection: difficultySelection) {
                             ForEach(Difficulty.allCases) { Text($0.title).tag($0) }
                         }
@@ -45,7 +47,6 @@ struct HomeView: View {
         #endif
     }
 
-    /// Holding the title toggles two-player hot-seat play, a debug mode.
     private var title: some View {
         HStack(spacing: 6) {
             DiscView(player: .red, size: 14)
@@ -55,7 +56,6 @@ struct HomeView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("Vier")
         .accessibilityAddTraits(.isHeader)
-        .onLongPressGesture(minimumDuration: 2) { isHotSeat.toggle() }
     }
 
     /// Changing difficulty with a game in progress asks first, because it ends that game.
@@ -80,7 +80,6 @@ struct HomeView: View {
     }
 
     private func play() {
-        let mode: GameViewModel.Mode = isHotSeat ? .hotSeat : .versusWatch
         if !game.hasGameInProgress || game.mode != mode {
             game.newGame(mode: mode, difficulty: difficulty)
         }

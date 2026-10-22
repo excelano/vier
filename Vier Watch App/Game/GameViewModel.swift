@@ -9,13 +9,23 @@ enum StorageKey {
     static let difficulty = "difficulty"
     static let savedGame = "savedGame"
     static let nextStarter = "nextStarter"
+    static let mode = "mode"
 }
 
 @Observable @MainActor
 final class GameViewModel {
-    enum Mode: String, Codable {
+    enum Mode: String, CaseIterable, Codable, Identifiable {
         case versusWatch
         case hotSeat
+
+        var id: Self { self }
+
+        var title: String {
+            switch self {
+            case .versusWatch: "Against the watch"
+            case .hotSeat: "Two players"
+            }
+        }
     }
 
     enum Phase: Equatable {

@@ -8,7 +8,7 @@ Turn the Digital Crown or slide a finger sideways on the board to move the disc 
 
 Easy, Medium and Hard set how far ahead the watch looks and how often it plays a random move instead. Every level takes a winning move when it has one; Medium and Hard also always block yours.
 
-Holding the title on the home screen for two seconds turns on a two-player mode, where two people take turns on one watch.
+The Players setting on the home screen switches to two players, where two people take turns on one watch with no Difficulty setting.
 
 ## Building
 

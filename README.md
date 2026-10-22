@@ -1,6 +1,6 @@
 # Vier
 
-Vier is four in a row for Apple Watch: drop red discs into a seven-by-six board against the watch's yellow, and line up four across, down or diagonally before it does. It runs on the watch alone, with no iPhone app, no account, no network, no ads and no analytics. It was made for a kid, so it opens straight into a game, picks up where it left off after a dropped wrist, and has an Easy level a child can beat.
+Vier is four in a row for Apple Watch: drop red discs into a seven-by-six board against the watch's yellow, and line up four across, down or diagonally before it does. It runs on the watch alone, with no iPhone app, no account, no network, no ads and no analytics. It opens straight into a game, picks up where it left off after a dropped wrist, and has an Easy level built for beginners.
 
 ## Playing
 

@@ -12,17 +12,28 @@ enum StorageKey {
     static let mode = "mode"
 }
 
+/// What the computer opponent is called: the device it plays on.
+enum Opponent {
+    #if os(watchOS)
+    static let name = "Watch"
+    static let noun = "watch"
+    #else
+    static let name = "iPhone"
+    static let noun = "iPhone"
+    #endif
+}
+
 @Observable @MainActor
 final class GameViewModel {
     enum Mode: String, CaseIterable, Codable, Identifiable {
-        case versusWatch
+        case versusComputer
         case hotSeat
 
         var id: Self { self }
 
         var title: String {
             switch self {
-            case .versusWatch: "Against the watch"
+            case .versusComputer: "Against the \(Opponent.noun)"
             case .hotSeat: "Two players"
             }
         }
@@ -42,7 +53,7 @@ final class GameViewModel {
     private(set) var board = Board()
     private(set) var turn: Player = .red
     private(set) var phase: Phase = .playerTurn
-    private(set) var mode: Mode = .versusWatch
+    private(set) var mode: Mode = .versusComputer
     private(set) var difficulty: Difficulty = .easy
     private(set) var starter: Player = .red
     private(set) var lastDrop: Position?
@@ -77,8 +88,8 @@ final class GameViewModel {
         guard case .finished(let outcome) = phase else { return nil }
         guard case .win(let win) = outcome else { return "Draw" }
         return switch (mode, win.player) {
-        case (.versusWatch, .red): "You win!"
-        case (.versusWatch, .yellow): "Watch wins"
+        case (.versusComputer, .red): "You win!"
+        case (.versusComputer, .yellow): "\(Opponent.name) wins"
         case (.hotSeat, .red): "Red wins!"
         case (.hotSeat, .yellow): "Yellow wins!"
         }
@@ -88,8 +99,8 @@ final class GameViewModel {
     var lastMoveDescription: String? {
         guard let lastDrop, let player = board[lastDrop] else { return nil }
         let name = switch (mode, player) {
-        case (.versusWatch, .red): "You"
-        case (.versusWatch, .yellow): "Watch"
+        case (.versusComputer, .red): "You"
+        case (.versusComputer, .yellow): Opponent.name
         case (.hotSeat, .red): "Red"
         case (.hotSeat, .yellow): "Yellow"
         }
@@ -97,13 +108,13 @@ final class GameViewModel {
         return "\(name) played column \(column). Column \(column) has \(board.emptyCount(in: lastDrop.column)) empty."
     }
 
-    /// Starts a game. Against the watch, who moves first alternates from game to game,
+    /// Starts a game. Against the computer, who moves first alternates from game to game,
     /// starting with the player on a fresh install.
     func newGame(mode: Mode, difficulty: Difficulty) {
         turnTask?.cancel()
         self.mode = mode
         self.difficulty = difficulty
-        if mode == .versusWatch {
+        if mode == .versusComputer {
             starter = defaults.string(forKey: StorageKey.nextStarter).flatMap(Player.init) ?? .red
             defaults.set(starter.opponent.rawValue, forKey: StorageKey.nextStarter)
         } else {
@@ -125,7 +136,7 @@ final class GameViewModel {
         save()
     }
 
-    /// Picks up a restored game whose next move is the watch's.
+    /// Picks up a restored game whose next move is the computer's.
     func resume() {
         if phase == .computerThinking && turnTask == nil {
             playComputerTurn()
@@ -147,7 +158,7 @@ final class GameViewModel {
     func play(column: Int) {
         guard phase == .playerTurn else { return }
         guard board.canDrop(in: column) else {
-            Haptics.play(.failure)
+            Haptic.fullColumn.play()
             return
         }
         selectedColumn = column
@@ -166,11 +177,11 @@ final class GameViewModel {
     }
 
     #if DEBUG
-    /// Sets up a position against the watch for screenshots: `columns` played alternately, red first.
+    /// Sets up a position against the computer for screenshots: `columns` played alternately, red first.
     func loadDemo(columns: [Int]) {
         turnTask?.cancel()
         turnTask = nil
-        mode = .versusWatch
+        mode = .versusComputer
         board = Board()
         turn = .red
         for column in columns {
@@ -203,7 +214,7 @@ final class GameViewModel {
         guard let position = board.drop(turn, in: column) else { return }
         lastDrop = position
         phase = .animatingDrop
-        Haptics.play(isHuman(turn) ? .click : .directionDown)
+        (isHuman(turn) ? Haptic.playerDrop : .computerDrop).play()
         turnTask = Task {
             try? await Task.sleep(for: Self.dropDuration)
             guard !Task.isCancelled else { return }
@@ -224,9 +235,9 @@ final class GameViewModel {
     private func finish(with outcome: Outcome) {
         phase = .finished(outcome)
         switch outcome {
-        case .win(let win) where isHuman(win.player): Haptics.play(.success)
-        case .win: Haptics.play(.retry)
-        case .draw: Haptics.play(.notification)
+        case .win(let win) where isHuman(win.player): Haptic.playerWin.play()
+        case .win: Haptic.computerWin.play()
+        case .draw: Haptic.draw.play()
         }
         save()
     }

@@ -62,7 +62,7 @@ struct GameViewModelTests {
 
     @Test func watchRepliesWithYellow() async throws {
         let game = makeGame()
-        game.newGame(mode: .versusWatch, difficulty: .medium)
+        game.newGame(mode: .versusComputer, difficulty: .medium)
         #expect(game.starter == .red)
         game.play(column: 3)
         try await Task.sleep(for: settle + GameViewModel.thinkingDelay + GameViewModel.hoverDuration + settle)
@@ -73,12 +73,12 @@ struct GameViewModelTests {
 
     @Test func firstMoveAlternatesAgainstTheWatch() {
         let game = makeGame()
-        game.newGame(mode: .versusWatch, difficulty: .easy)
+        game.newGame(mode: .versusComputer, difficulty: .easy)
         #expect(game.starter == .red)
-        game.newGame(mode: .versusWatch, difficulty: .easy)
+        game.newGame(mode: .versusComputer, difficulty: .easy)
         #expect(game.starter == .yellow)
         #expect(game.phase == .computerThinking)
-        game.newGame(mode: .versusWatch, difficulty: .easy)
+        game.newGame(mode: .versusComputer, difficulty: .easy)
         #expect(game.starter == .red)
     }
 
@@ -100,7 +100,7 @@ struct GameViewModelTests {
     @Test func finishedGameIsNotSaved() async throws {
         let defaults = UserDefaults(suiteName: UUID().uuidString)!
         let game = makeGame(defaults: defaults)
-        game.newGame(mode: .versusWatch, difficulty: .medium)
+        game.newGame(mode: .versusComputer, difficulty: .medium)
         game.loadDemo(columns: [0, 6, 0, 6, 0, 6])
         game.play(column: 0)
         try await Task.sleep(for: settle)

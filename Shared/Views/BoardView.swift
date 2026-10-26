@@ -7,17 +7,20 @@ import SwiftUI
 /// The playing field: a selector row above a 7 × 6 board, laid out on a grid of square cells
 /// sized to fit. Discs sit behind the frame, so a falling disc shows through the holes.
 ///
-/// Sliding sideways moves the hovering disc one column per cell of travel from where it started;
-/// swiping down drops it. VoiceOver plays a column by activating it.
+/// On the watch, sliding sideways moves the hovering disc one column per cell of travel from where
+/// it started, and swiping down drops it. On iPhone, the disc follows the finger and drops when it
+/// lifts. VoiceOver plays a column by activating it.
 struct BoardView: View {
     let board: Board
     var hover: (player: Player, column: Int)?
     var lastDrop: Position?
     var winningCells: Set<Position> = []
     var onSelectColumn: (Int) -> Void = { _ in }
-    var onSwipeDown: () -> Void = {}
+    var onDrop: () -> Void = {}
     var onPlayColumn: (Int) -> Void = { _ in }
+    #if os(watchOS)
     @State private var slideStartColumn: Int?
+    #endif
 
     private static let fieldRows = Board.rows + 1
 
@@ -25,6 +28,10 @@ struct BoardView: View {
         GeometryReader { geometry in
             let cell = min(geometry.size.width / CGFloat(Board.columns),
                            geometry.size.height / CGFloat(Self.fieldRows))
+            let field = CGRect(x: (geometry.size.width - cell * CGFloat(Board.columns)) / 2,
+                               y: (geometry.size.height - cell * CGFloat(Self.fieldRows)) / 2,
+                               width: cell * CGFloat(Board.columns),
+                               height: cell * CGFloat(Self.fieldRows))
             ZStack(alignment: .topLeading) {
                 if let hover {
                     DiscView(player: hover.player, size: discSize(cell))
@@ -45,15 +52,17 @@ struct BoardView: View {
                     .offset(y: cell)
                 columnTargets(cell: cell)
             }
-            .frame(width: cell * CGFloat(Board.columns), height: cell * CGFloat(Self.fieldRows))
+            .frame(width: field.width, height: field.height)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .contentShape(Rectangle())
-            .gesture(slideAndSwipe(cell: cell))
+            .gesture(dropGesture(in: field))
         }
     }
 
-    private func slideAndSwipe(cell: CGFloat) -> some Gesture {
-        DragGesture(minimumDistance: 6)
+    #if os(watchOS)
+    private func dropGesture(in field: CGRect) -> some Gesture {
+        let cell = field.width / CGFloat(Board.columns)
+        return DragGesture(minimumDistance: 6)
             .onChanged { value in
                 let travel = value.translation
                 guard let hover, abs(travel.width) > abs(travel.height) else { return }
@@ -66,10 +75,28 @@ struct BoardView: View {
                 slideStartColumn = nil
                 let down = max(value.translation.height, value.predictedEndTranslation.height)
                 if down > cell, down > abs(value.translation.width) {
-                    onSwipeDown()
+                    onDrop()
                 }
             }
     }
+    #else
+    /// Lifting the finger off the board drops; lifting it anywhere else cancels.
+    private func dropGesture(in field: CGRect) -> some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { value in
+                onSelectColumn(column(at: value.location, in: field))
+            }
+            .onEnded { value in
+                guard field.contains(value.location) else { return }
+                onSelectColumn(column(at: value.location, in: field))
+                onDrop()
+            }
+    }
+
+    private func column(at location: CGPoint, in field: CGRect) -> Int {
+        Int((location.x - field.minX) / field.width * CGFloat(Board.columns)).clamped(to: 0...(Board.columns - 1))
+    }
+    #endif
 
     private var discs: [(position: Position, player: Player)] {
         (0..<Board.columns).flatMap { column in

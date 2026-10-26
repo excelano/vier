@@ -2,9 +2,9 @@
 # against the release being cut, so notes left from last time stop the release
 # rather than reaching the listing.
 
-version = "1.0.0"
+version = "1.1.0"
 
 [locales."en-us"]
 whats-new = """
-The first release of Vier: four in a row on your Apple Watch.
+Vier now plays on iPhone as well as Apple Watch: touch the board to aim, lift to drop. The watch app still plays on its own.
 """

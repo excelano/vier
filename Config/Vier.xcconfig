@@ -5,9 +5,9 @@
 // The values a fork changes to build its own copy of the app.
 
 DEVELOPMENT_TEAM = 9K6W5PMFYP
-// The App Store record's bundle id, carried by the iOS stub that ships the watch app.
-VIER_CONTAINER_BUNDLE_ID = com.excelano.vier
-VIER_BUNDLE_ID = $(VIER_CONTAINER_BUNDLE_ID).watchkitapp
+// The App Store record's bundle id, carried by the iPhone app that embeds the watch app.
+VIER_BUNDLE_ID = com.excelano.vier
+VIER_WATCH_BUNDLE_ID = $(VIER_BUNDLE_ID).watchkitapp
 VIER_DISPLAY_NAME = Vier
 
 #include "Version.xcconfig"

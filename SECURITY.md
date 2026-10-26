@@ -12,6 +12,6 @@ Only the latest version on the App Store receives fixes. Security fixes ship thr
 
 ## Security model
 
-**Vier has no network surface.** It makes no network request, opens no socket and links no networking or analytics code. It requests no entitlements beyond the defaults, so it cannot reach contacts, location, health data, the microphone or anything else on the watch.
+**Vier has no network surface.** It makes no network request, opens no socket and links no networking or analytics code. It requests no entitlements beyond the defaults, so it cannot reach contacts, location, health data, the microphone or anything else on the iPhone or the watch. The two apps do not talk to each other.
 
-**What it keeps stays on the watch.** The chosen difficulty, the game in progress and who moves first next are kept in the app's own preferences on the watch, and removing the app removes them.
+**What it keeps stays on the device.** The chosen difficulty, the players setting, the game in progress and who moves first next are kept in each app's own preferences on its device, and removing the app removes them.

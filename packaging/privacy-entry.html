@@ -1,19 +1,19 @@
 <!--
-    Vier (Apple Watch) — Privacy entry for excelano.com/legal
+    Vier (iPhone and Apple Watch) — Privacy entry for excelano.com/legal
     Author: David M. Anderson
     Built with AI assistance (Claude, Anthropic)
 -->
-<h3 id="vier">Vier (Apple Watch) &mdash; Privacy</h3>
-<p>Vier is a four-in-a-row game for Apple Watch, played against the watch or by two people sharing it. A board game has little reason to know anything about you, and Vier doesn't: it asks for no permissions, opens no network connections and has no account. Its App Store privacy label is &ldquo;Data Not Collected&rdquo;.</p>
+<h3 id="vier">Vier (iPhone and Apple Watch) &mdash; Privacy</h3>
+<p>Vier is a four-in-a-row game for iPhone and Apple Watch, played against the device or by two people sharing it. A board game has little reason to know anything about you, and Vier doesn't: it asks for no permissions, opens no network connections and has no account. Its App Store privacy label is &ldquo;Data Not Collected&rdquo;.</p>
 
 <h4>The four things Vier remembers</h4>
-<p>So that a game can wait for you, Vier keeps four entries in its preferences on the watch: the difficulty you picked, whether you play the watch or a second person, the board of the game in progress, and who opens the next game. Starting a new game overwrites the saved board, a finished game is discarded, and deleting Vier from the watch deletes all four.</p>
+<p>So that a game can wait for you, Vier keeps four entries in its preferences on each device it runs on: the difficulty you picked, whether you play the device or a second person, the board of the game in progress, and who opens the next game. The iPhone app and the watch app keep separate copies and never send them to each other. Starting a new game overwrites the saved board, a finished game is discarded, and deleting Vier from a device deletes all four there.</p>
 
 <h4>What Vier never touches</h4>
-<p>Location, health data, contacts, the microphone and motion data are all out of its reach, since it requests none of those permissions. No names are entered or stored, which matters on a watch under Family Setup. No advertising, analytics, crash reporting or third-party code is built in.</p>
+<p>Location, health data, contacts, photos, the camera, the microphone and motion data are all out of its reach, since it requests none of those permissions. No names are entered or stored, which matters on a child's iPhone or a watch under Family Setup. No advertising, analytics, crash reporting or third-party code is built in.</p>
 
 <h4>Apple's own reports</h4>
-<p>Apple may give the developer anonymous install counts, and crash reports from people who allow Share With App Developers. Vier plays no part in that. Anyone who would rather not share can turn it off from the iPhone, in Settings &gt; Privacy &amp; Security &gt; Analytics &amp; Improvements.</p>
+<p>Apple may give the developer anonymous install counts, and crash reports from people who allow Share With App Developers. Vier plays no part in that. Anyone who would rather not share can turn it off on the iPhone, in Settings &gt; Privacy &amp; Security &gt; Analytics &amp; Improvements.</p>
 
 <h4>Reading the code</h4>
 <p>The source is at <a href="https://github.com/excelano/vier" rel="noopener noreferrer">github.com/excelano/vier</a>. The four preference keys are declared together in <code>StorageKey</code>, in <code>GameViewModel.swift</code>. This statement lives beside the code, in <code>packaging/</code>, so every revision of it is in the repository's history.</p>

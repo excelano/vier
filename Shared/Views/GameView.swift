@@ -8,9 +8,11 @@ struct GameView: View {
     @Environment(GameViewModel.self) private var game
     @Environment(\.dismiss) private var dismiss
     @AppStorage(StorageKey.difficulty) private var difficulty: Difficulty = .easy
-    @State private var crown = 3.0
     @State private var isShowingResult = false
+    #if os(watchOS)
+    @State private var crown = 3.0
     @FocusState private var isCrownFocused: Bool
+    #endif
 
     var body: some View {
         VStack(spacing: 4) {
@@ -19,7 +21,7 @@ struct GameView: View {
                       lastDrop: game.lastDrop,
                       winningCells: game.winningCells,
                       onSelectColumn: game.select,
-                      onSwipeDown: game.dropInSelectedColumn,
+                      onDrop: game.dropInSelectedColumn,
                       onPlayColumn: game.play(column:))
             if isShowingResult, let title = game.resultTitle {
                 ResultPanel(title: title, onPlayAgain: playAgain, onHome: { dismiss() })
@@ -27,6 +29,7 @@ struct GameView: View {
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
         }
+        #if os(watchOS)
         .focusable()
         .focused($isCrownFocused)
         .focusEffectDisabled()
@@ -39,6 +42,10 @@ struct GameView: View {
             crown = Double(game.selectedColumn)
         }
         .ignoresSafeArea(edges: .bottom)
+        #else
+        .padding(.horizontal, 12)
+        .sensoryFeedback(.selection, trigger: game.selectedColumn)
+        #endif
         .onChange(of: game.lastDrop) {
             if let move = game.lastMoveDescription {
                 AccessibilityNotification.Announcement(move).post()
@@ -58,7 +65,9 @@ struct GameView: View {
         }
         .background(.black)
         .onAppear {
+            #if os(watchOS)
             isCrownFocused = true
+            #endif
             game.resume()
         }
     }
@@ -69,6 +78,12 @@ struct GameView: View {
 }
 
 private struct TurnIndicator: View {
+    #if os(watchOS)
+    private static let dotSize: CGFloat = 10
+    #else
+    private static let dotSize: CGFloat = 16
+    #endif
+
     let phase: GameViewModel.Phase
     let turn: Player
 
@@ -76,18 +91,12 @@ private struct TurnIndicator: View {
         switch phase {
         case .computerThinking:
             Text("…").font(.footnote.bold())
-                .accessibilityLabel("Watch is thinking")
+                .accessibilityLabel("\(Opponent.name) is thinking")
         case .finished:
             EmptyView()
         default:
-            Circle().fill(turn.color).frame(width: 10, height: 10)
+            Circle().fill(turn.color).frame(width: Self.dotSize, height: Self.dotSize)
                 .accessibilityLabel(turn == .red ? "Red to move" : "Yellow to move")
         }
-    }
-}
-
-extension Comparable {
-    func clamped(to range: ClosedRange<Self>) -> Self {
-        min(max(self, range.lowerBound), range.upperBound)
     }
 }

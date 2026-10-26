@@ -20,7 +20,7 @@ The computer opponent is a negamax search with alpha-beta pruning in `Vier Watch
 
 ## Privacy
 
-Vier makes no network connection. It keeps the chosen difficulty, the game in progress and who moves first next on the watch, and nothing else. The full statement is at [excelano.com/legal/#vier](https://excelano.com/legal/#vier).
+Vier makes no network connection. It keeps the chosen difficulty, whether one or two players are at the board, the game in progress and who moves first next on the watch, and nothing else. The full statement is at [excelano.com/legal/#vier](https://excelano.com/legal/#vier).
 
 ## License
 

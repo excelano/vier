@@ -6,5 +6,5 @@ version = "1.1.0"
 
 [locales."en-us"]
 whats-new = """
-Vier now plays on iPhone as well as Apple Watch: touch the board to aim, lift to drop. The watch app still plays on its own.
+Vier now plays on iPhone as well as Apple Watch: slide to aim and swipe down to drop, as on the watch. The watch app still plays on its own.
 """

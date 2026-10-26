@@ -21,7 +21,7 @@ struct GameView: View {
                       lastDrop: game.lastDrop,
                       winningCells: game.winningCells,
                       onSelectColumn: game.select,
-                      onDrop: game.dropInSelectedColumn,
+                      onSwipeDown: game.dropInSelectedColumn,
                       onPlayColumn: game.play(column:))
             if isShowingResult, let title = game.resultTitle {
                 ResultPanel(title: title, onPlayAgain: playAgain, onHome: { dismiss() })

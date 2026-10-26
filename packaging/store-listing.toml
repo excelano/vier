@@ -12,12 +12,12 @@ Vier is a four-in-a-row game for iPhone, with an Apple Watch app included that a
 
 PLAYING ON IPHONE
 1. Launch Vier. Players starts as Against the iPhone; tap Play.
-2. Touch the board: the red disc above it follows your finger from column to column.
-3. Lift your finger over the board to drop the disc. The iPhone answers with a yellow disc.
+2. Slide a finger sideways on the board to move the red disc above it from column to column.
+3. Swipe down on the board to drop the disc. A tap does not drop it. The iPhone answers with a yellow disc.
 4. Four red discs in a line, across, down or diagonally, win. The four are ringed, and Play again and Home appear.
 
 PLAYING ON APPLE WATCH
-The same game, played with the Digital Crown or a sideways slide to aim and a swipe down on the board to drop.
+The same game and the same gestures, with the Digital Crown as a second way to move the disc.
 
 ALSO ON THE HOME SCREEN
 Players switches to Two players, for two people taking turns on one device; the Difficulty setting is hidden in that mode. Difficulty (Easy, Medium, Hard) sets the opponent's strength, and Easy is built for beginners. Changing difficulty during a game asks before ending it. A game in progress is saved and resumes when Vier is opened again.
@@ -33,13 +33,13 @@ privacy = "https://excelano.com/legal/#vier"
 description = """
 Vier is the four-in-a-row board game for iPhone and Apple Watch. Red plays yellow on a seven-by-six board: drop discs in turn, and the first to line up four across, down or diagonally wins.
 
-On iPhone, touch the board and your red disc follows your finger; lift it to drop. The iPhone takes a moment to think, slides its yellow disc over and drops it in reply. The four discs that win the game are ringed and pulse.
+Slide a finger sideways to move your red disc over a column, then swipe down to drop it. A tap never drops a disc, so a stray touch can't spoil a game. The iPhone takes a moment to think, slides its yellow disc over and drops it in reply. The four discs that win the game are ringed and pulse.
 
 The computer plays at three levels. Easy was built for beginners. Medium always blocks a win you are about to make. Hard reads four moves ahead. Who opens the game switches from one game to the next.
 
 Two people can share one phone, too: choose Two players on the home screen and pass it back and forth across a table.
 
-Vier comes with an Apple Watch app that plays the same game on your wrist, using the Digital Crown to aim and a swipe down to drop. The watch plays without the iPhone nearby, and each device keeps its own game.
+Vier comes with an Apple Watch app that plays the same game on your wrist, where the Digital Crown can move the disc as well. The watch plays without the iPhone nearby, and each device keeps its own game.
 
 A game in progress survives a locked screen or a lowered wrist, and Vier reopens on the same board.
 

@@ -4,7 +4,7 @@ Vier is four in a row for iPhone and Apple Watch: drop red discs into a seven-by
 
 ## Playing
 
-On iPhone, touch the board and the red disc follows your finger along the columns; lift it to drop. On the watch, turn the Digital Crown or slide a finger sideways to move the disc, then swipe down to drop it. Either way the opponent thinks for a moment, slides its own disc over and drops it. Who moves first alternates from game to game. When someone lines up four, those discs are ringed and pulse, and the game offers Play again or Home.
+Slide a finger sideways on the board to move the red disc over a column, then swipe down to drop it; on the watch the Digital Crown moves it too. A tap does nothing, so a stray touch can't play a move. The opponent thinks for a moment, slides its own disc over and drops it. Who moves first alternates from game to game. When someone lines up four, those discs are ringed and pulse, and the game offers Play again or Home.
 
 Easy, Medium and Hard set how far ahead the opponent looks and how often it plays a random move instead. Every level takes a winning move when it has one; Medium and Hard also always block yours.
 

@@ -27,6 +27,7 @@ struct ResultPanel: View {
                 CompactButton(title: "Home", fill: .gray.opacity(0.45), action: onHome)
             }
         }
+        .frame(maxWidth: 420)
         .padding(.horizontal, Self.spacing * 1.5)
     }
 }

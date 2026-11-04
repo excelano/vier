@@ -4,6 +4,9 @@
 
 import Foundation
 import Observation
+#if os(iOS)
+import UIKit
+#endif
 
 enum StorageKey {
     static let difficulty = "difficulty"
@@ -13,13 +16,14 @@ enum StorageKey {
 }
 
 /// What the computer opponent is called: the device it plays on.
+@MainActor
 enum Opponent {
     #if os(watchOS)
     static let name = "Watch"
     static let noun = "watch"
     #else
-    static let name = "iPhone"
-    static let noun = "iPhone"
+    static let name = UIDevice.current.model
+    static let noun = name
     #endif
 }
 
@@ -31,7 +35,7 @@ final class GameViewModel {
 
         var id: Self { self }
 
-        var title: String {
+        @MainActor var title: String {
             switch self {
             case .versusComputer: "Against the \(Opponent.noun)"
             case .hotSeat: "Two players"

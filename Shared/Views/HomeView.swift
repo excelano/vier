@@ -53,6 +53,7 @@ struct HomeView: View {
                 difficultyPicker.pickerStyle(.segmented)
             }
         }
+        .frame(maxWidth: 420)
         .padding(.horizontal, 32)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.black)

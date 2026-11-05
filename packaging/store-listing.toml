@@ -27,8 +27,8 @@ On each device Vier keeps four preferences: the difficulty, the players setting,
 """
 
 [locales."en-us"]
-website = "https://github.com/excelano/vier"
-support = "https://github.com/excelano/vier"
+website = "https://anderix.com/vier/"
+support = "https://excelano.com/support/?app=Vier&channel=App%20Store"
 privacy = "https://excelano.com/legal/#vier"
 description = """
 Vier is the four-in-a-row board game for iPhone, iPad and Apple Watch. Red plays yellow on a seven-by-six board: drop discs in turn, and the first to line up four across, down or diagonally wins.
